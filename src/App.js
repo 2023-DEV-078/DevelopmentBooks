@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { booksConstants } from './constants/appConstants';
 import './App.css';
 
-const { ZERO, ONE, TWO, THREE, FOUR, FIVE, BOOK_PRICE, FIVE_PERCENT, TEN_PERCENT, TWENTY_PERCENT, TWENTY_FIVE_PERCENT } = booksConstants
+const { ZERO, ONE, TWO, THREE, FOUR, FIVE, BOOK_PRICE, FIVE_PERCENT, TEN_PERCENT, TWENTY_PERCENT, TWENTY_FIVE_PERCENT, CLEN_CODE, THE_CLEAN_CODER, CLEAN_ARCHITECTURE, TEST_DRIVEN_DEVELOPMENT, LEGACY_CODE } = booksConstants
 
 function App() {
   const [cleanCodeQuantity, setCleanCodeQuantity] = useState(ZERO);
@@ -14,16 +14,46 @@ function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
 
   useEffect(() => {
-    setShoppingCart([cleanCodeQuantity, cleanCoderQuantity, cleanArchitectureQuantity, tddQuantity, legacyCodeQuantity].filter((quantity) => { return quantity === 1 }))
+    setShoppingCart([
+      ...Array(cleanCodeQuantity).fill(CLEN_CODE),
+      ...Array(cleanCoderQuantity).fill(THE_CLEAN_CODER),
+      ...Array(cleanArchitectureQuantity).fill(CLEAN_ARCHITECTURE),
+      ...Array(tddQuantity).fill(TEST_DRIVEN_DEVELOPMENT),
+      ...Array(legacyCodeQuantity).fill(LEGACY_CODE)
+    ])
   }, [cleanCodeQuantity, cleanCoderQuantity, cleanArchitectureQuantity, tddQuantity, legacyCodeQuantity])
 
-  const calculateBooksPrice = () => {
-    if (shoppingCart.length === FIVE) { setTotalPrice(FIVE * BOOK_PRICE * TWENTY_FIVE_PERCENT) }
-    else if (shoppingCart.length === FOUR) { setTotalPrice(FOUR * BOOK_PRICE * TWENTY_PERCENT) }
-    else if (shoppingCart.length === THREE) { setTotalPrice(THREE * BOOK_PRICE * TEN_PERCENT) }
-    else if (shoppingCart.length === TWO) { setTotalPrice(TWO * BOOK_PRICE * FIVE_PERCENT) }
-    else if (shoppingCart.length === ONE) { setTotalPrice(BOOK_PRICE) }
+  const seperateBooksToGroupOfSets = () => {
+    const groupsOfBooks = []
+    while (!shoppingCart.every(book => !book)) {
+      const groupOfBooks = []
+      shoppingCart.forEach((book, index) => {
+        if (!groupOfBooks.includes(book) && book) {
+          groupOfBooks.push(book)
+          shoppingCart[index] = false
+        }
+      });
+      groupsOfBooks.push(groupOfBooks)
+    }
+    return groupsOfBooks
   }
+
+  const calculateBooksPrice = () => {
+
+    let totalPrice = ZERO
+    const setsOfBooks = seperateBooksToGroupOfSets()
+
+    setsOfBooks.forEach((setOfBook) => {
+      if (setOfBook.length === FIVE) { totalPrice += FIVE * BOOK_PRICE * TWENTY_FIVE_PERCENT }
+      else if (setOfBook.length === FOUR) { totalPrice += FOUR * BOOK_PRICE * TWENTY_PERCENT }
+      else if (setOfBook.length === THREE) { totalPrice += THREE * BOOK_PRICE * TEN_PERCENT }
+      else if (setOfBook.length === TWO) { totalPrice += TWO * BOOK_PRICE * FIVE_PERCENT }
+      else if (setOfBook.length === ONE) { totalPrice += BOOK_PRICE }
+
+    })
+    setTotalPrice(totalPrice)
+  }
+
 
   return (
     <div className="App">
