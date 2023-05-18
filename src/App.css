@@ -8,3 +8,22 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+button {
+  margin-top: 25px;
+}
+
+.booksContainer {
+  text-align: start;
+  border: 1px solid red;
+  padding: 40px;
+  background-color: coral;
+  color: black;
+  font-size: medium;
+  width: 300px;
+}
+
+.bookInput {
+  display: flex;
+  justify-content: space-between;
+}
