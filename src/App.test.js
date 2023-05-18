@@ -4,6 +4,17 @@ import App from './App';
 
 const { ONE, THREE, FOUR, CLEAN_CODE, THE_CLEAN_CODER } = booksConstants;
 
+const addBooksAndCalculatePrice = (orderedBooks) => {
+
+  orderedBooks.forEach(book => {
+    const input = screen.getByLabelText(book.title)
+    fireEvent.change(input, { target: { value: book.quantity } })
+  });
+
+  const calculatePrice = screen.getByRole('button', { name: /Calculate Total Price/i });
+  fireEvent.click(calculatePrice)
+}
+
 describe("Book price calculator - Tests", () => {
 
   test('Display title', () => {
@@ -15,11 +26,7 @@ describe("Book price calculator - Tests", () => {
   test("When user buy one book without discount", async () => {
     render(<App />)
 
-    const input = screen.getByLabelText(CLEAN_CODE)
-    fireEvent.change(input, { target: { value: ONE } })
-
-    const calculatePrice = screen.getByRole('button', { name: /Calculate Total Price/i });
-    fireEvent.click(calculatePrice)
+    addBooksAndCalculatePrice([{ title: CLEAN_CODE, quantity: ONE }])
 
     const totalPrice = screen.getByRole('heading', { level: FOUR });
     expect(totalPrice.innerHTML).toBe('Total price: 50');
@@ -28,13 +35,7 @@ describe("Book price calculator - Tests", () => {
   test("When user buy two different books then five percent discount is applied", async () => {
     render(<App />)
 
-    const inputCleanCode = screen.getByLabelText(CLEAN_CODE)
-    fireEvent.change(inputCleanCode, { target: { value: ONE } })
-    const inputTheCleanCoder = screen.getByLabelText(THE_CLEAN_CODER)
-    fireEvent.change(inputTheCleanCoder, { target: { value: ONE } })
-
-    const calculatePrice = screen.getByRole('button', { name: /Calculate Total Price/i });
-    fireEvent.click(calculatePrice)
+    addBooksAndCalculatePrice([{ title: CLEAN_CODE, quantity: ONE }, { title: THE_CLEAN_CODER, quantity: ONE }])
 
     const totalPrice = screen.getByRole('heading', { level: FOUR });
     expect(totalPrice.innerHTML).toBe('Total price: 95');

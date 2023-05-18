@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { booksConstants } from './constants/appConstants';
 import './App.css';
 
@@ -8,10 +8,15 @@ function App() {
   const [cleanCodeQuantity, setCleanCodeQuantity] = useState(ZERO);
   const [cleanCoderQuantity, setCleanCoderQuantity] = useState(ZERO);
   const [totalPrice, setTotalPrice] = useState(ZERO);
+  const [shoppingCart, setShoppingCart] = useState([])
+
+  useEffect(() => {
+    setShoppingCart([cleanCodeQuantity, cleanCoderQuantity].filter((quantity) => { return quantity === 1 }))
+  }, [cleanCodeQuantity, cleanCoderQuantity])
 
   const calculateBooksPrice = () => {
-    if (cleanCodeQuantity === ONE && cleanCoderQuantity === ONE) { setTotalPrice(TWO * BOOK_PRICE * FIVE_PERCENT) }
-    else if (cleanCodeQuantity === ONE) { setTotalPrice(BOOK_PRICE) }
+    if (shoppingCart.length === 2) { setTotalPrice(TWO * BOOK_PRICE * FIVE_PERCENT) }
+    else if (shoppingCart.length === 1) { setTotalPrice(BOOK_PRICE) }
   }
 
   return (
