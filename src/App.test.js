@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { booksConstants } from './constants/testConstants';
 import App from './App';
 
-const { ONE, THREE, FOUR, CLEAN_CODE, THE_CLEAN_CODER, CLEAN_ARCHITECTURE, TEST_DRIVEN_DEVELOPMENT } = booksConstants;
+const { ONE, THREE, FOUR, CLEAN_CODE, THE_CLEAN_CODER, CLEAN_ARCHITECTURE, TEST_DRIVEN_DEVELOPMENT, LEGACY_CODE } = booksConstants;
 
 const addBooksAndCalculatePrice = (orderedBooks) => {
 
@@ -57,6 +57,15 @@ describe("Book price calculator - Tests", () => {
 
     const totalPrice = screen.getByRole('heading', { level: FOUR });
     expect(totalPrice.innerHTML).toBe('Total price: 160');
+  });
+
+  test("When user buy five different books then twenty five percent discount is applied", async () => {
+    render(<App />)
+
+    addBooksAndCalculatePrice([{ title: CLEAN_CODE, quantity: ONE }, { title: THE_CLEAN_CODER, quantity: ONE }, { title: CLEAN_ARCHITECTURE, quantity: ONE }, { title: TEST_DRIVEN_DEVELOPMENT, quantity: ONE }, { title: LEGACY_CODE, quantity: ONE }])
+
+    const totalPrice = screen.getByRole('heading', { level: FOUR });
+    expect(totalPrice.innerHTML).toBe('Total price: 187.5');
   });
 
 });
