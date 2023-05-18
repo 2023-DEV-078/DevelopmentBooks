@@ -28,3 +28,13 @@ button {
   justify-content: space-between;
   margin-bottom: 10px;
 }
+
+.specialOffer{
+  background-color: lightgoldenrodyellow;
+  border-radius: 25px;
+  color: black;
+  font-size: small;
+  padding: 50px;
+  margin-top: 20px;
+  font-weight: bold;
+}

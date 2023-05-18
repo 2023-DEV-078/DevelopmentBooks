@@ -84,6 +84,13 @@ function App() {
         <button onClick={() => calculateBooksPrice()}>Calculate Total Price</button>
         <h4>{`Total price: ${totalPrice}`}</h4>
       </section>
+      <section className='specialOffer'>
+        <p data-testid="info-title">Our special offers for today:</p>
+        <p data-testid="info-5%">Buy 2 different books and get a 5% discount on them</p>
+        <p data-testid="info-10%">Buy 3 different books and get a 10% discount on them</p>
+        <p data-testid="info-20%">Buy 4 different books and get a 20% discount on them</p>
+        <p data-testid="info-25%">Buy 5 different books and get a 25% discount on them</p>
+      </section>
     </div>
   );
 }
