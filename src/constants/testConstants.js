@@ -7,5 +7,5 @@ export const booksConstants = {
     THE_CLEAN_CODER: 'The Clean Coder',
     CLEAN_ARCHITECTURE: 'Clean Architecture',
     TEST_DRIVEN_DEVELOPMENT: 'Test Driven Development',
-    LEGACY_CODE: 'Legacy Code'
-};
+    LEGACY_CODE: 'Legacy Code',
+}

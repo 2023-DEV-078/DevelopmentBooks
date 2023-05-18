@@ -1,40 +1,40 @@
 .App {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    text-align: center;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 button {
-  margin-top: 25px;
+    margin-top: 25px;
 }
 
 .booksContainer {
-  text-align: start;
-  border: 1px solid red;
-  padding: 40px;
-  background-color: coral;
-  color: black;
-  font-size: medium;
-  width: 400px;
+    text-align: start;
+    border: 1px solid red;
+    padding: 40px;
+    background-color: coral;
+    color: black;
+    font-size: medium;
+    width: 400px;
 }
 
 .bookInput {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.specialOffer{
-  background-color: lightgoldenrodyellow;
-  border-radius: 25px;
-  color: black;
-  font-size: small;
-  padding: 50px;
-  margin-top: 20px;
-  font-weight: bold;
+.specialOffer {
+    background-color: lightgoldenrodyellow;
+    border-radius: 25px;
+    color: black;
+    font-size: small;
+    padding: 50px;
+    margin-top: 20px;
+    font-weight: bold;
 }

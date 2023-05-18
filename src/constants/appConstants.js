@@ -14,5 +14,5 @@ export const booksConstants = {
     THE_CLEAN_CODER: 'cleanCoder',
     CLEAN_ARCHITECTURE: 'cleanArchitecture',
     TEST_DRIVEN_DEVELOPMENT: 'tdd',
-    LEGACY_CODE: 'legacyCode'
-};
+    LEGACY_CODE: 'legacyCode',
+}
