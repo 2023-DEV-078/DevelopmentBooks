@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Book price calculator - Tests", () => {
+
+  test('Display title', () => {
+    render(<App />);
+    const title = screen.getByRole('heading', { level: 3 });
+    expect(title.innerHTML).toBe('Book price calculator - TDD');
+  });
+
 });
