@@ -5,5 +5,6 @@ export const booksConstants = {
     FOUR: 4,
     BOOK_PRICE: 50,
     CLEAN_CODE: 'Clean Code',
-    THE_CLEAN_CODER: 'The Clean Coder'
+    THE_CLEAN_CODER: 'The Clean Coder',
+    CLEAN_ARCHITECTURE: 'Clean Architecture'
 };

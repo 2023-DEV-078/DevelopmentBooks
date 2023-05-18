@@ -2,21 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { booksConstants } from './constants/appConstants';
 import './App.css';
 
-const { ZERO, ONE, TWO, BOOK_PRICE, FIVE_PERCENT } = booksConstants
+const { ZERO, ONE, TWO, THREE, BOOK_PRICE, FIVE_PERCENT, TEN_PERCENT } = booksConstants
 
 function App() {
   const [cleanCodeQuantity, setCleanCodeQuantity] = useState(ZERO);
   const [cleanCoderQuantity, setCleanCoderQuantity] = useState(ZERO);
+  const [cleanArchitectureQuantity, setCleanArchitectureQuantity] = useState(ZERO);
   const [totalPrice, setTotalPrice] = useState(ZERO);
   const [shoppingCart, setShoppingCart] = useState([])
 
   useEffect(() => {
-    setShoppingCart([cleanCodeQuantity, cleanCoderQuantity].filter((quantity) => { return quantity === 1 }))
-  }, [cleanCodeQuantity, cleanCoderQuantity])
+    setShoppingCart([cleanCodeQuantity, cleanCoderQuantity, cleanArchitectureQuantity].filter((quantity) => { return quantity === 1 }))
+  }, [cleanCodeQuantity, cleanCoderQuantity, cleanArchitectureQuantity])
 
   const calculateBooksPrice = () => {
-    if (shoppingCart.length === 2) { setTotalPrice(TWO * BOOK_PRICE * FIVE_PERCENT) }
-    else if (shoppingCart.length === 1) { setTotalPrice(BOOK_PRICE) }
+    if (shoppingCart.length === THREE) { setTotalPrice(THREE * BOOK_PRICE * TEN_PERCENT) }
+    else if (shoppingCart.length === TWO) { setTotalPrice(TWO * BOOK_PRICE * FIVE_PERCENT) }
+    else if (shoppingCart.length === ONE) { setTotalPrice(BOOK_PRICE) }
   }
 
   return (
@@ -32,6 +34,10 @@ function App() {
         <div className='bookInput'>
           <label htmlFor="clean-coder">The Clean Coder</label>
           <input type="number" min={ZERO} id="clean-coder" value={cleanCoderQuantity} onChange={e => setCleanCoderQuantity(Number(e.target.value))}></input>
+        </div>
+        <div className='bookInput'>
+          <label htmlFor="clean-architecture">Clean Architecture</label>
+          <input type="number" min={ZERO} id="clean-architecture" value={cleanArchitectureQuantity} onChange={e => setCleanArchitectureQuantity(Number(e.target.value))}></input>
         </div>
         <button onClick={() => calculateBooksPrice()}>Calculate Total Price</button>
         <h4>{`Total price: ${totalPrice}`}</h4>
